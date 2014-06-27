@@ -40,7 +40,7 @@ int main(int argc, const char * argv[])
     
     fillUcsChars();
 
-    for (int i=0; fs && i < fs->nfont && i < 10; ++i) {
+    for (int i=0; fs && i < fs->nfont; ++i) {
         FcPattern* font = fs->fonts[i];
         FcChar8* file, *style, *family;
         if (FcPatternGetString(font, FC_FILE, 0, &file) != FcResultMatch ||
