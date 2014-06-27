@@ -68,9 +68,17 @@ int main(int argc, const char * argv[])
     }
     
     charSupportList.sort(compareNumSupported);
+    int lastSupportedNumFonts = 0;
     for (HasCharList::iterator i = charSupportList.begin(); i != charSupportList.end(); i++) {
-        if ((*i).numSupportedFonts)
-            printf("Char: 0x%x Supported by: %d fonts\n", (*i).theChar, (int)(*i).supportedBy.size());
+        if (!(*i).numSupportedFonts)
+            continue;
+        
+        if ((*i).numSupportedFonts > lastSupportedNumFonts) {
+            printf("\n<br>Supported by %d fonts:<br>\n", (*i).numSupportedFonts);
+            lastSupportedNumFonts = (*i).numSupportedFonts;
+        }
+        
+        printf("&#x%x; ",(*i).theChar);
     }
     
     if (fs)
